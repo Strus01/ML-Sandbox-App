@@ -11,4 +11,4 @@ st.write('''
 data_name = st.sidebar.selectbox('Select data', ('Customer churn', 'Titanic', 'Diabetes'))
 clf_name = st.sidebar.selectbox('Select classifier', ('SVM', 'KNN'))
 
-
+X_train, y_train, X_test, y_test = clf.get_data(data_name)
