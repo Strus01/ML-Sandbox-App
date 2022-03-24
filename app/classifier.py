@@ -3,6 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
 
 from params import get_params
 
@@ -13,11 +15,11 @@ def get_data(data_name):
         X = pd.read_csv(r'..\datasets\customer_X.csv')
         y = pd.read_csv(r'..\datasets\customer_y.csv')
 
-    if data_name == 'Titanic':
+    elif data_name == 'Titanic':
         X = pd.read_csv(r'..\datasets\titanic_X.csv')
         y = pd.read_csv(r'..\datasets\titanic_y.csv')
 
-    if data_name == 'Diabetes':
+    elif data_name == 'Diabetes':
         X = pd.read_csv(r'..\datasets\diabetes_X.csv')
         y = pd.read_csv(r'..\datasets\diabetes_y.csv')
 
@@ -27,7 +29,13 @@ def get_data(data_name):
 
 # return classifier object
 def get_clf(clf_name):
-    pass
+    params = get_params(clf_name)
+
+    if clf_name == 'SVM':
+        clf = SVC(**params)
+
+    elif clf_name == 'KNN':
+        clf = KNeighborsClassifier(**params)
 
 
 # fit data and return y_preds
