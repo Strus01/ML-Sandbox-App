@@ -7,11 +7,11 @@ def get_params(clf_name):
         C = st.sidebar.slider('C', 0.01, 10.0)
         kernel = st.sidebar.selectbox('Select kernel', ('linear', 'rbf', 'sigmoid'))
         gamma = st.sidebar.selectbox('Select gamma', ('scale', 'auto'))
-        decision_function = st.sidebar.selectbox('Select decision function', ('ovo', 'ovr'))
+        decision_function = st.sidebar.selectbox('Select decision function shape', ('ovo', 'ovr'))
         params['C'] = C
         params['kernel'] = kernel
         params['gamma'] = gamma
-        params['decision_function'] = decision_function
+        params['decision_function_shape'] = decision_function
 
     elif clf_name == 'KNN':
         K = st.sidebar.slider('K', 1, 15)

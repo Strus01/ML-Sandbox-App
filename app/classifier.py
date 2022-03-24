@@ -2,7 +2,11 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import altair as alt
+import streamlit as st
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 
@@ -11,6 +15,7 @@ from params import get_params
 
 # return data after train test split
 def get_data(data_name):
+    global X, y
     if data_name == 'Customer churn':
         X = pd.read_csv(r'..\datasets\customer_X.csv')
         y = pd.read_csv(r'..\datasets\customer_y.csv')
@@ -23,12 +28,15 @@ def get_data(data_name):
         X = pd.read_csv(r'..\datasets\diabetes_X.csv')
         y = pd.read_csv(r'..\datasets\diabetes_y.csv')
 
-    X_train, y_train, X_test, y_test = train_test_split(X, y, test_size=0.2, random_state=123)
-    return X_train, y_train, X_test, y_test
+    y.to_numpy()
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=123)
+    return X_train, X_test, y_train, y_test
 
 
 # return classifier object
 def get_clf(clf_name):
+    global clf
     params = get_params(clf_name)
 
     if clf_name == 'SVM':
@@ -37,17 +45,26 @@ def get_clf(clf_name):
     elif clf_name == 'KNN':
         clf = KNeighborsClassifier(**params)
 
+    return clf
+
 
 # fit data and return y_preds
-def fit(clf_name):
-    pass
+def fit_data(clf, X_train, y_train, X_test):
+    clf.fit(X_train, y_train)
+    y_pred = clf.predict(X_test)
+
+    return y_pred
 
 
 # print classification report
-def get_report(y_pred, y_test):
-    pass
+def get_report(y_test, y_pred):
+    st.write('**Classification report**')
+    st.text(classification_report(y_test, y_pred))
 
 
 # plot confusion matrix
 def conf_matrix(y_test, y_pred):
-    pass
+    cm = confusion_matrix(y_test, y_pred)
+    fig = plt.figure(figsize=(5, 3))
+    sns.heatmap(cm, annot=True, fmt='d')
+    st.pyplot(fig)
