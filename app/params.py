@@ -16,11 +16,11 @@ def get_params(clf_name):
     elif clf_name == 'KNN':
         n_neighbors = st.sidebar.slider('Number of neighbors', 1, 15)
         weights = st.sidebar.selectbox('Select weight', ('uniform', 'distance'))
-        algorithms = st.sidebar.selectbox('Select algorithm', ('auto', 'ball_tree', 'kd_tree', 'brute'))
+        algorithm = st.sidebar.selectbox('Select algorithm', ('auto', 'ball_tree', 'kd_tree', 'brute'))
         p = st.sidebar.slider('p', 1, 2)
         params['n_neighbors'] = n_neighbors
         params['weights'] = weights
-        params['algorithms'] = algorithms
+        params['algorithm'] = algorithm
         params['p'] = p
 
     return params
