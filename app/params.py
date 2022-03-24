@@ -14,11 +14,11 @@ def get_params(clf_name):
         params['decision_function_shape'] = decision_function
 
     elif clf_name == 'KNN':
-        K = st.sidebar.slider('K', 1, 15)
+        n_neighbors = st.sidebar.slider('Number of neighbors', 1, 15)
         weights = st.sidebar.selectbox('Select weight', ('uniform', 'distance'))
         algorithms = st.sidebar.selectbox('Select algorithm', ('auto', 'ball_tree', 'kd_tree', 'brute'))
         p = st.sidebar.slider('p', 1, 2)
-        params['K'] = K
+        params['n_neighbors'] = n_neighbors
         params['weights'] = weights
         params['algorithms'] = algorithms
         params['p'] = p
