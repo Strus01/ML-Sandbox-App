@@ -40,4 +40,13 @@ def get_params(clf_name):
         loss = st.sidebar.selectbox('Select loss', ('hinge', 'log', 'modified_huber', 'squared_hinge'))
         params['loss'] = loss
 
+    elif clf_name == 'XGBoost':
+        loss = st.sidebar.selectbox('Select loss', ('deviance', 'exponential'))
+        learning_rate = st.sidebar.slider('Select learning rate', 0.01, 1.5)
+        criterion = st.sidebar.selectbox('Select criterion', ('friedman_mse', 'squared_error', 'mse'))
+
+        params['loss'] = loss
+        params['learning_rate'] = learning_rate
+        params['criterion'] = criterion
+
     return params

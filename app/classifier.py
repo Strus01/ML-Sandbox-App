@@ -3,13 +3,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
-from sklearn.linear_model import LogisticRegression, SGDClassifier
+from sklearn.ensemble import GradientBoostingClassifier
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, accuracy_score
 from sklearn.metrics import confusion_matrix
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
+from sklearn.linear_model import LogisticRegression, SGDClassifier
 
 from params import get_params
 
@@ -51,6 +52,9 @@ def get_clf(clf_name):
 
     elif clf_name == 'SGD':
         clf = SGDClassifier(**params)
+
+    elif clf_name == 'XGBoost':
+        clf = GradientBoostingClassifier(**params)
 
     return clf
 
