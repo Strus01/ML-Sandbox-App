@@ -36,4 +36,8 @@ def get_params(clf_name):
         params['C'] = C
         params['penalty'] = penalty
 
+    elif clf_name == 'SGD':
+        loss = st.sidebar.selectbox('Select loss', ('hinge', 'log', 'modified_huber', 'squared_hinge'))
+        params['loss'] = loss
+
     return params

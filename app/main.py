@@ -9,7 +9,7 @@ st.write('''
 ''')
 
 data_name = st.sidebar.selectbox('Select data', ('Customer churn', 'Titanic', 'Diabetes'))
-clf_name = st.sidebar.selectbox('Select classifier', ('SVM', 'KNN', 'Logistic Regression'))
+clf_name = st.sidebar.selectbox('Select classifier', ('SVM', 'KNN', 'Logistic Regression', 'SGD'))
 
 X_train, X_test, y_train, y_test = clf.get_data(data_name)
 
