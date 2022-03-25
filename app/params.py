@@ -29,7 +29,7 @@ def get_params(clf_name):
         if solver == 'newton-cg' or solver == 'lbfgs' or solver == 'sag':
             penalty = st.sidebar.selectbox('Select penalty', ('l2', 'none'))
         elif solver == 'saga':
-            penalty = st.sidebar.selectbox('Select penalty', ('elasticnet', 'l1', 'l2', 'none'))
+            penalty = st.sidebar.selectbox('Select penalty', ('l1', 'l2', 'none'))
         else:
             penalty = st.sidebar.selectbox('Select penalty', ('l1', 'l2'))
         params['solver'] = solver
