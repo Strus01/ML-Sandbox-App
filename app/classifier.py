@@ -2,10 +2,11 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import altair as alt
 import streamlit as st
+from sklearn.linear_model import LogisticRegression
+
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, accuracy_score
 from sklearn.metrics import confusion_matrix
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
@@ -45,6 +46,9 @@ def get_clf(clf_name):
     elif clf_name == 'KNN':
         clf = KNeighborsClassifier(**params)
 
+    elif clf_name == 'Logistic Regression':
+        clf = LogisticRegression(**params)
+
     return clf
 
 
@@ -59,7 +63,12 @@ def fit_data(clf, X_train, y_train, X_test):
 # print classification report
 def get_report(y_test, y_pred):
     st.write('**Classification report**')
-    st.text(classification_report(y_test, y_pred))
+    st.write('**accuracy**', round(accuracy_score(y_test, y_pred), 2))
+    report = classification_report(y_test, y_pred, output_dict=True)
+    df = pd.DataFrame(report).transpose()
+    df.drop(['accuracy', 'macro avg', 'weighted avg'], axis='rows', inplace=True)
+    df.support = df.support.astype(int)
+    st.dataframe(df)
 
 
 # plot confusion matrix
