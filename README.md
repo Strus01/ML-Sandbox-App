@@ -3,6 +3,25 @@
 
 ---------------------------------------------------------------------------------------
 
+### How to run it
+
+1. Install packages
+```shell
+pip install -r requirements.txt
+```
+
+2. Open app directory
+```shell
+cd app
+```
+
+3. Run script
+```shell
+streamlit run main.py
+```
+
+---------------------------------------------------------------------------------------
+
 ### You can choose between 3 datasets:
 - Customer churn
 - Titanic 
