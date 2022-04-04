@@ -1,4 +1,4 @@
 .idea/
 venv/
 .gitignore
-__pycache__/
+app/__pycache__/
