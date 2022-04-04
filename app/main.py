@@ -2,7 +2,7 @@ import streamlit as st
 import classifier as clf
 
 
-st.title('Machine Learning App')
+st.title('Machine Learning Sandbox App')
 
 st.write('''
 #### Manually choose hyperparameters and see how it affects your model
