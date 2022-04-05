@@ -15,37 +15,31 @@ from sklearn.linear_model import LogisticRegression, SGDClassifier
 
 from params import get_params
 
-# get path to sibling directory
-def get_path(d1, d2):
-    path = os.path.realpath(__file__)
-    dir = os.path.dirname(path)
-    dir = dir.replace(d1, d2)
-    os.chdir(dir)
-
+# get path to file
+def get_path(file):
+    dir = os.path.dirname(__file__)
+    path = os.path.join(dir, '..', 'datasets', file)
+    return path
 
 # return data after train test split
 def get_data(data_name):
     global X, y
 
-    get_path('app', 'datasets')
-
     if data_name == 'Customer churn':
-        X = pd.read_csv('customer_X.csv')
-        y = pd.read_csv('customer_y.csv')
+        X = pd.read_csv(get_path('customer_X.csv'))
+        y = pd.read_csv(get_path('customer_y.csv'))
 
     elif data_name == 'Titanic':
-        X = pd.read_csv('titanic_X.csv')
-        y = pd.read_csv('titanic_y.csv')
+        X = pd.read_csv(get_path('titanic_X.csv'))
+        y = pd.read_csv(get_path('titanic_y.csv'))
 
     elif data_name == 'Diabetes':
-        X = pd.read_csv('diabetes_X.csv')
-        y = pd.read_csv('diabetes_y.csv')
+        X = pd.read_csv(get_path('diabetes_X.csv'))
+        y = pd.read_csv(get_path('diabetes_y.csv'))
 
     y.to_numpy()
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=123)
-
-    os.chdir('..')
 
     return X_train, X_test, y_train, y_test
 
