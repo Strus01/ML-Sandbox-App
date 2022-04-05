@@ -3,20 +3,20 @@
 
 ---------------------------------------------------------------------------------------
 
-### How to run it
+## How to run it
 
+### Heroku deployment
+https://ml-sandbox-heroku.herokuapp.com/
+
+### Locally:
 1. Install packages
 ```shell
 pip install -r requirements.txt
 ```
-
 2. Run script
 ```shell
 streamlit run app/main.py
 ```
-
-**App is working locally. I am working on heroku deployment right now**
-
 ---------------------------------------------------------------------------------------
 
 ### You can choose between 3 datasets:
