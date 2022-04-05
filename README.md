@@ -10,14 +10,9 @@
 pip install -r requirements.txt
 ```
 
-2. Open app directory
+2. Run script
 ```shell
-cd app
-```
-
-3. Run script
-```shell
-streamlit run main.py
+streamlit run app/main.py
 ```
 
 ---------------------------------------------------------------------------------------
