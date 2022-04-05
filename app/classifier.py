@@ -15,19 +15,10 @@ from sklearn.linear_model import LogisticRegression, SGDClassifier
 
 from params import get_params
 
-# get path to sibling directory
-def get_path(d1, d2):
-    path = os.path.realpath(__file__)
-    dir = os.path.dirname(path)
-    dir = dir.replace(d1, d2)
-    os.chdir(dir)
-
 
 # return data after train test split
 def get_data(data_name):
     global X, y
-
-    get_path('app', 'datasets')
 
     if data_name == 'Customer churn':
         X = pd.read_csv(r'customer_X.csv')
@@ -44,8 +35,6 @@ def get_data(data_name):
     y.to_numpy()
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=123)
-
-    os.chdir('..')
 
     return X_train, X_test, y_train, y_test
 
