@@ -27,25 +27,25 @@ def get_path(d1, d2):
 def get_data(data_name):
     global X, y
 
-    # get_path('app', 'datasets')
+    get_path('app', 'datasets')
 
     if data_name == 'Customer churn':
-        X = pd.read_csv(r'..\datasets\customer_X.csv')
-        y = pd.read_csv(r'..\datasets\customer_y.csv')
+        X = pd.read_csv(r'customer_X.csv')
+        y = pd.read_csv(r'customer_y.csv')
 
     elif data_name == 'Titanic':
-        X = pd.read_csv(r'..\datasets\titanic_X.csv')
-        y = pd.read_csv(r'..\datasets\titanic_y.csv')
+        X = pd.read_csv(r'titanic_X.csv')
+        y = pd.read_csv(r'titanic_y.csv')
 
     elif data_name == 'Diabetes':
-        X = pd.read_csv(r'..\datasets/diabetes_X.csv')
-        y = pd.read_csv(r'..\datasets/diabetes_y.csv')
+        X = pd.read_csv(r'diabetes_X.csv')
+        y = pd.read_csv(r'diabetes_y.csv')
 
     y.to_numpy()
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=123)
 
-    # os.chdir('..')
+    os.chdir('..')
 
     return X_train, X_test, y_train, y_test
 
