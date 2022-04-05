@@ -15,7 +15,7 @@ pip install -r requirements.txt
 streamlit run app/main.py
 ```
 
-**App is working loccaly I am working on heroku deployment right now**
+**App is working locally. I am working on heroku deployment right now**
 
 ---------------------------------------------------------------------------------------
 
