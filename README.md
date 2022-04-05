@@ -15,6 +15,8 @@ pip install -r requirements.txt
 streamlit run app/main.py
 ```
 
+**App is working loccaly I am working on heroku deployment right now**
+
 ---------------------------------------------------------------------------------------
 
 ### You can choose between 3 datasets:
