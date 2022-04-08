@@ -1,5 +1,5 @@
 # ML Sandbox App
-### Simple Machine Learning app that allows you to tune hyperparameters and see it results
+### Machine Learning app that allows you to tune hyperparameters and see it results
 
 ---------------------------------------------------------------------------------------
 
