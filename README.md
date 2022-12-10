@@ -8,6 +8,8 @@
 ### Heroku deployment
 https://ml-sandbox-heroku.herokuapp.com/
 
+#### Currently not working because Heroku is no longer free to use
+
 ### Locally:
 1. Install packages
 ```shell
