@@ -2,3 +2,4 @@
 venv/
 .gitignore
 app/__pycache__/
+__pycache__/

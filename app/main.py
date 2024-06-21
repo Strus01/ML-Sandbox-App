@@ -1,21 +1,35 @@
+import importlib
+from typing import Tuple
+
+from classifier.classifier import Classifier
 import streamlit as st
-import classifier as clf
+
+from dataset import get_dataset
 
 
-st.title('Machine Learning Sandbox App')
+def get_data_and_classifier_names() -> Tuple[str, str]:
+    data_name = st.sidebar.selectbox('Select data', ('Customer churn', 'Titanic', 'Diabetes'))
+    classifier_name = st.sidebar.selectbox('Select classifier', ('SVM', 'KNN', 'Logistic Regression', 'SGD', 'Gradient Boosting'))
+    return data_name, classifier_name
 
-st.write('''
-#### Manually choose hyperparameters and see how it affects your model
-''')
 
-data_name = st.sidebar.selectbox('Select data', ('Customer churn', 'Titanic', 'Diabetes'))
-clf_name = st.sidebar.selectbox('Select classifier', ('SVM', 'KNN', 'Logistic Regression', 'SGD', 'XGBoost'))
+def get_classifier(classifier_name: str) -> Classifier:
+    classifier_module = importlib.import_module(f"classifier.{classifier_name.lower().replace(' ', '_')}")
+    return getattr(classifier_module, classifier_name.replace(' ', ''))()
 
-X_train, X_test, y_train, y_test = clf.get_data(data_name)
 
-c = clf.get_clf(clf_name)
+if __name__ == '__main__':
+    st.title('Machine Learning Sandbox App')
 
-y_pred = clf.fit_data(c, X_train, y_train, X_test)
+    st.write('''
+    #### Manually choose hyperparameters and see how it affects your model
+    ''')
 
-clf.get_report(y_test, y_pred)
-clf.conf_matrix(y_test, y_pred)
+    data_name, classifier_name = get_data_and_classifier_names()
+    classifier = get_classifier(classifier_name)
+
+    X_train, X_test, y_train, y_test = get_dataset(data_name)
+
+    y_pred = classifier.fit(X_train, y_train)  
+    classifier.evaluate(X_test, y_test)
+    
